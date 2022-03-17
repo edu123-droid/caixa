@@ -1,41 +1,47 @@
 package caixa;
 
 public class Caixa {
-	private int linhas;
-	private int colunas;
+	private final int linhas;
+	private final int colunas;
+	private String caracter;
 	
-	public Caixa(int linhas, int colunas) {
+	public Caixa(int linhas, int colunas, String caracter) {
 		this.linhas = linhas;
 		this.colunas = colunas;
+		this.caracter = caracter;
+	}
+
+	public void setCaracter(String caracter){
+		this.caracter = caracter;
 	}
 	
 	public void imprimir() {
-		//TOPO
-		horizontal(colunas);
-		
-		// LATERAL
-		vertical(linhas, colunas);
-		
-		//FIM
-		horizontal(colunas);	
+		System.out.print(horizontal());
+		System.out.print(vertical());
+		System.out.print(horizontal());
 	}
 	
-	private static void horizontal(int colunas) {
+	private String horizontal() {
+		String resultado ="";
+
 		for(int i = 0; i < colunas ; i++) {
-			System.out.print("0");
+			resultado = resultado.concat(caracter);
 		}
-		System.out.println(""); 
+		resultado = resultado.concat("\n");
+
+		return resultado;
 	}
 	
-	private static void vertical(int linhas, int colunas) {
+	private String vertical() {
+		String resultado ="";
+
 		for(int i = 0 ; i < linhas ; i++) {
-			System.out.print("0");
+			resultado =	resultado.concat(caracter);
 			for(int x = 0; x < colunas -2; x++ ) {
-			System.out.print(" ");
+				resultado =	resultado.concat(" ");
 			}
-			System.out.print("0");
-			System.out.println("");
-			
+			resultado = resultado.concat(caracter +"\n");
 		}
+		return resultado;
 	}
 }
